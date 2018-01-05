@@ -1,0 +1,60 @@
+<div class="col-sm-12 col-md-8 module" ng-controller="CultureController as culture">
+    <div class="module-content">
+        <div class="module-title">Último Artículo - Latest Article</div>
+        <div class="row">
+            <div class="col-sm-9">
+                <h4 ng-click="culture.openResourceModal(culture.latestResource)">{{culture.latestResource.title}}</h4>
+                {{culture.latestResource.blocks[0].substring(0, culture.latestResource.blocks[0].indexOf(' ', culture.latestResource.blocks[0].length/2))}}...
+                <a ng-click="culture.openResourceModal(culture.latestResource)">Read More</a>
+            </div>
+            <div class="col-sm-3">
+                <img ng-click="culture.openResourceModal(culture.latestResource)" class="img-thumbnail" src={{culture.latestResource.images[0]}}></img>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-4 module">
+    <div class="module-content">
+        <div class="module-title">
+            Anuncios - Announcements
+        </div>
+            There are no recent announcements.
+        <div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6 module">
+    <div class="module-content">
+        <div class="module-title">Siguiente lección de grupo - Next group lesson {{main.nextLesson.fromNow}}</div>
+        <div class="btn btn-success" style="float: right; margin: 5px;">Join Class Now!</div>
+        <ul class="list-unstyled">
+            <li>Instructor: {{main.nextLesson.instructor.name}} - {{main.nextLesson.instructor.email}}</li>
+            <li>{{main.nextLesson.description}}</li>
+        </ul>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6 module" ng-controller="CalendarController as calendar">
+    <div class="module-content">
+        <div class="module-title">
+            Lecciones Privadas - Private Lessons
+        </div>
+        <table class="table table-striped small" ng-if="bookedPrivateLessons.length">
+            <tr>
+                <th>Date</th>
+                <th>Instructor</th>
+                <th>Instructor Email</th>
+            </tr>
+            <tr ng-repeat="lesson in bookedPrivateLessons" class="private-lesson">
+                <td>{{lesson.start | date:'EEE MMM d h:mm a'}}</td>
+                <td>{{lesson.instructor.name}}</td>
+                <td>{{lesson.instructor.email}}</td>
+            </tr>
+        </table>
+        <div ng-if="bookedPrivateLessons.length == 0">
+            You have no private lessons scheduled. Go to the Lessons page to check openings with our great instructors.
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success">Buy Private Lesson</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div ng-controller="CultureController as culture" class="module">
+    <div class="tabs">
+        <div ng-style="culture.tabStyle" ng-class="{'tab-active': culture.tab == tab}" class="tab" ng-click="culture.tabClick({tab})" ng-repeat="(tab, translation) in culture.tabTranslations">
+            {{tab}} - <br> {{translation}}
+        </div>
+    </div>
+    <div>
+        <div class="module-content" ng-repeat="resource in culture.resources">
+            <div class="row">
+                
+                <div class="col-sm-9">
+                    <h4 ng-click="culture.openResourceModal(resource)">{{resource.title}}</h4>
+                    {{resource.blocks[0].substring(0, resource.blocks[0].indexOf(' ', resource.blocks[0].length/2))}}...
+                    <br />
+                    <a ng-click="culture.openResourceModal(resource)">Read More</a>
+                </div>
+                <div class="col-sm-3">
+                    <img ng-click="culture.openResourceModal(resource)" class="img-thumbnail" ng-src={{resource.images[0]}}></img>
+                </div>
+                
+                <!--
+                <div class="col-sm-8">
+                    <h4><a href="resource.link">{{resource.title}}</a></h4>
+                    <div>{{resource.text}}</div>
+                </div>
+                <div class="col-sm-4">
+                    <img href="{{resource.link}}" ng-src={{resource.image}}></img>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

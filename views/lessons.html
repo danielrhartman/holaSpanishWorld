@@ -1,0 +1,30 @@
+<div ng-controller="CalendarController">
+    <div class="col-md-2 small module" id="infoContainer">
+        <div class="module-content">
+            <div class="module-title">Lesson Details</div>
+            <div ng-if="!selected">Select a lesson</div>
+            <div ng-if="selected">
+                <ul class="list-unstyled">
+                    <li>Lesson type: {{ selected.title}}</li>
+                    <li>Instructor: {{ selected.instructor.name }}</li>
+                    <li>Date: {{ selected.date }}</li>
+                    <li>Start: {{ selected.startString }}</li>
+                    <li>End: {{ selected.endString }}</li>
+                    <li>Description: {{ selected.description }}</li>
+                </ul>
+                <button ng-if="selected.future && main.user.credits > 0" class="btn btn-primary">Join Lesson</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 module">
+        <div class="module-content" id="calendarContainer">
+            <div class="btn-group pull-right">
+                <div class="btn btn-sm" ng-class="(eventSources.indexOf(group) != -1) ? 'group-lesson-button' : 'btn-default'" ng-click="addRemoveEventSource(eventSources, group)">Group</div>
+                <div class="btn btn-sm" ng-class="(eventSources.indexOf(openPrivate) != -1) ? 'open-lesson-button' : 'btn-default'" ng-click="addRemoveEventSource(eventSources, openPrivate)">Open Private</div>
+                <div class="btn btn-sm" ng-class="(eventSources.indexOf(bookedPrivate) != -1) ? 'booked-lesson-button' : 'btn-default'"ng-click="addRemoveEventSource(eventSources, bookedPrivate)">Scheduled Private</div>
+            </div>
+            <div class="calendar" ng-model="eventSources" calendar="myCalendar" ui-calendar="uiConfig.calendar">
+            </div>
+        </div>
+    </div>
+</div>
